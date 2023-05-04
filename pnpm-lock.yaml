@@ -33,6 +33,12 @@ devDependencies:
   eslint-plugin-svelte:
     specifier: ^2.26.0
     version: 2.27.3(eslint@8.39.0)(svelte@3.58.0)
+  lucide:
+    specifier: ^0.206.0
+    version: 0.206.0
+  lucide-svelte:
+    specifier: ^0.206.0
+    version: 0.206.0(svelte@3.58.0)
   postcss:
     specifier: ^8.4.23
     version: 8.4.23
@@ -1403,6 +1409,18 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+    dev: true
+
+  /lucide-svelte@0.206.0(svelte@3.58.0):
+    resolution: {integrity: sha512-lPGVuoEVQFGzTBXxA3fJ/He05T5KSdlsxXKBh6kVzkg92h5M64qn95W2fygUDfcFjPv8XQwTkfD2p8uA0nocJg==}
+    peerDependencies:
+      svelte: ^3.49.0
+    dependencies:
+      svelte: 3.58.0
+    dev: true
+
+  /lucide@0.206.0:
+    resolution: {integrity: sha512-qo/ah97+B6znEwXW84W6NjoNfLdP9TcfnESNlIqMKe188gh4GNz6ZSToCfyzMMaNpmPKpYyOmHCGdsfRSWoxCA==}
     dev: true
 
   /magic-string@0.27.0:
