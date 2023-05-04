@@ -1,0 +1,21 @@
+<script lang="ts">
+	import type { LayoutData } from './$types';
+	export let data: LayoutData;
+</script>
+
+<div class="flex p-8 gap-4">
+	<div class="flex flex-col gap-3">
+		{#each data.entityTypes as entityType}
+			{@const isActive = data.activeEntityType == entityType.id}
+			<a
+				href="/entityTypes/{entityType.id}"
+				class="w-72 btn {isActive
+					? 'bg-accent'
+					: 'bg-base-300'} drop-shadow capitalize border-neutral text-xl"
+			>
+				{entityType.id}
+			</a>
+		{/each}
+	</div>
+	<slot />
+</div>
