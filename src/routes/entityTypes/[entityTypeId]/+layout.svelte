@@ -1,58 +1,30 @@
 <script lang="ts">
-	import DataTypeIcon from '$lib/components/DataTypeIcon.svelte';
-	import FieldTypePropertiesIcons from '$lib/components/FieldTypePropertiesIcons.svelte';
-	import ShowName from '$lib/components/ShowName.svelte';
-	import { displayLocale } from '$lib/displayNames/displayLocale';
-	import { chosenLanguage } from '$lib/stores/chosenLanguage';
-	import { displayType } from '$lib/stores/displayType';
-	import type { FieldType } from '$lib/types/fieldType';
+	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
-	import { Skull } from 'lucide-svelte';
 
 	export let data: LayoutData;
 
-	function getAvailableProperties(fieldTypes: FieldType[]): [boolean, boolean, boolean] {
-		let hasUnique = false;
-		let hasReadonly = false;
-		let hasHidden = false;
+	$: activeTab = getActiveTab($page.route.id);
 
-		fieldTypes.forEach((fieldType) => {
-			if (fieldType.isUnique) {
-				hasUnique = true;
-			}
-			if (fieldType.isReadOnly) {
-				hasReadonly = true;
-			}
-			if (fieldType.isHidden) {
-				hasHidden = true;
-			}
-		});
+	function getActiveTab(pageId: string | null): 'links' | 'fields' {
+		if (pageId === '/entityTypes/[entityTypeId]/links') return 'links';
 
-		return [hasHidden, hasReadonly, hasUnique];
+		return 'fields';
 	}
-
-	$: [hasHidden, hasReadonly, hasUnique] = getAvailableProperties(data.fieldTypes);
 </script>
 
-<div class="">
-	<div class="flex flex-col gap-2">
-		{#each data.fieldTypes as fieldType, index}
-			{@const isActive = data.fieldTypeId == fieldType.id}
-			<a
-				href="/entityTypes/{data.activeEntityType}/{fieldType.id}"
-				class="btn btn-sm flex gap-2 {isActive
-					? 'bg-accent'
-					: 'bg-base-300'} min-w-[20rem] drop-shadow capitalize border-neutral justify-start"
-			>
-				<p class="flex gap-1">
-					<FieldTypePropertiesIcons {hasHidden} {hasReadonly} {hasUnique} {fieldType} /><ShowName
-						input={fieldType}
-					/>
-				</p>
-				<p class="grow text-right"><DataTypeIcon dataType={fieldType.dataType} /></p>
-			</a>
-		{/each}
+<div class="flex flex-col gap-0">
+	<div class="tabs">
+		<a
+			class="tab {activeTab === 'fields' ? 'tab-active' : ''}"
+			href="/entityTypes/{data.activeEntityType}/fields">Fields</a
+		>
+		<a
+			class="tab {activeTab === 'links' ? 'tab-active' : ''}"
+			href="/entityTypes/{data.activeEntityType}/links">Links</a
+		>
+	</div>
+	<div class="border border-gray-200 p-4 rounded-md">
+		<slot />
 	</div>
 </div>
-
-<slot />

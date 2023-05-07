@@ -10,7 +10,7 @@
 		{#each data.entityTypes as entityType}
 			{@const isActive = data.activeEntityType == entityType.id}
 			<a
-				href="/entityTypes/{entityType.id}"
+				href="/entityTypes/{entityType.id}/fields"
 				class="w-72 btn {isActive
 					? 'bg-accent'
 					: 'bg-base-300'} drop-shadow capitalize border-neutral text-xl"

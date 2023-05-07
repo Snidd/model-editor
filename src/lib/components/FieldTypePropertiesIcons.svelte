@@ -10,6 +10,8 @@
 	import { Lock } from 'lucide-svelte';
 	import { Asterisk } from 'lucide-svelte';
 
+	const hasAny = hasHidden || hasReadonly || hasUnique;
+
 	const iconClasses = 'h-4';
 </script>
 
@@ -28,4 +30,7 @@
 	<Asterisk class={iconClasses} />
 {:else}
 	<Asterisk class="{iconClasses} {hasUnique ? 'invisible' : 'hidden'}" />
+{/if}
+{#if !hasAny}
+	<div class="h-4 w-2">&nbsp;</div>
 {/if}
