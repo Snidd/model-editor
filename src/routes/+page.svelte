@@ -1,2 +1,3 @@
-<h1 class="text-3xl font-bold underline">Hello world!</h1>
-<button class="btn">Click me!</button>
+<div class="p-8">
+	<a href="/entityTypes" class="underline text-xl text-blue-800">Goto Entity Types</a>
+</div>

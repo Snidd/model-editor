@@ -16,9 +16,12 @@ export const load: LayoutLoad = async ({ fetch, params, parent }) => {
 	const fieldTypes = (await entityTypeFieldsResult.json()) as FieldType[];
 	const parentData = await parent();
 
+	const entityType = parentData.entityTypes.find((et) => et.id === params.entityTypeId);
+
 	return {
 		entityTypes: parentData.entityTypes,
 		fieldTypeId: params.fieldTypeId,
-		fieldTypes: fieldTypes
+		fieldTypes: fieldTypes,
+		entityType: entityType
 	};
 };
