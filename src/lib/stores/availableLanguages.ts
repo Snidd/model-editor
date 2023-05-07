@@ -7,11 +7,11 @@ export type Language = {
 
 export const availableLanguages = writable<Language[]>([
 	{
-		id: 'sv',
-		name: 'Swedish'
-	},
-	{
 		id: 'en',
 		name: 'English'
+	},
+	{
+		id: 'sv',
+		name: 'Swedish'
 	}
 ]);

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ShowName from '$lib/components/ShowName.svelte';
+
 	import type { LayoutData } from './$types';
 	export let data: LayoutData;
 </script>
@@ -13,7 +15,7 @@
 					? 'bg-accent'
 					: 'bg-base-300'} drop-shadow capitalize border-neutral text-xl"
 			>
-				{entityType.id}
+				<ShowName input={entityType} />
 			</a>
 		{/each}
 	</div>

@@ -1,9 +1,18 @@
-import type { EntityType } from '$lib/types/entityType';
+import { PUBLIC_API_KEY, PUBLIC_API_URL } from '$env/static/public';
+
 import type { FieldType } from '$lib/types/fieldType';
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ fetch, params, parent }) => {
-	const entityTypeFieldsResult = await fetch(`/api/fieldTypes/${params.entityTypeId}`);
+	const entityTypeFieldsResult = await fetch(
+		`${PUBLIC_API_URL}/model/entityTypes/${params.entityTypeId}/fieldtypes`,
+		{
+			headers: {
+				'X-inRiver-APIKey': PUBLIC_API_KEY
+			}
+		}
+	);
+
 	const fieldTypes = (await entityTypeFieldsResult.json()) as FieldType[];
 	const parentData = await parent();
 
