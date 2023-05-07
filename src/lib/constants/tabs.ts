@@ -12,7 +12,7 @@ export const root_tabs: Tab[] = [
 	},
 	{
 		id: '/cvls',
-		name: 'CVLssss',
+		name: 'CVLs',
 		href: '/cvls'
 	}
 ];
